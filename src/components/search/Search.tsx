@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { ReactComponent as SearchIcon } from '../../icons/search.svg';
 import cn from '../../utils/Bem';
@@ -6,15 +6,15 @@ import cn from '../../utils/Bem';
 import './Search.scss';
 
 interface SearchParams {
-	value: string;
 	onChange: (value: string) => void;
 }
 
-function Search({ value, onChange }: SearchParams) {
+function Search({ onChange }: SearchParams) {
+	const [value, setValue] = useState('');
 	const search = cn('Search');
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		onChange(event.target.value);
+		setValue(event.target.value);
 	};
 
 	return (
@@ -26,7 +26,12 @@ function Search({ value, onChange }: SearchParams) {
 				value={value}
 				onChange={handleChange}
 			/>
-			<SearchIcon className={search('icon')} />
+			<div className={search('button')}>
+				<SearchIcon
+					className={search('icon')}
+					onClick={() => onChange(value)}
+				/>
+			</div>
 		</div>
 	);
 }

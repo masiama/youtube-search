@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Results from './components/results/Results';
 import Search from './components/search/Search';
@@ -40,18 +40,19 @@ function App() {
 		return data;
 	};
 
-	useEffect(() => {
+	const search = (_value: string) => {
 		if (timeout) clearTimeout(timeout);
 
 		resetTimeout(
 			setTimeout(() => {
+				setValue(_value);
 				setResponse(undefined);
-				if (!value) return;
+				if (!_value) return;
 
 				request().then(setResponse).catch(alert);
 			}, 500),
 		);
-	}, [value]);
+	};
 
 	const changePage = (token: string) => {
 		return request(token).then(setResponse).catch(alert);
@@ -59,7 +60,7 @@ function App() {
 
 	return (
 		<div className={app({ fixed: !!currentVideo })}>
-			<Search value={value} onChange={setValue} />
+			<Search onChange={search} />
 			{response && 'items' in response && (
 				<Results
 					videos={response.items}

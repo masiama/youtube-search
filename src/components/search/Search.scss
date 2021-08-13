@@ -1,19 +1,28 @@
 @import '../../scss/vars';
 
 .Search {
-	box-shadow: 0 0.2rem 0 $shadow-color;
-	border-radius: 0.8rem;
-	background: white;
 	max-width: 50rem;
 	display: flex;
 	align-items: center;
-	padding: 1.2rem;
-	flex-direction: row-reverse;
 	margin: 0 auto 2rem;
 
 	&__icon {
-		margin-right: 1.2rem;
-		height: 2rem;
+		width: 2.2rem;
+		display: block;
+	}
+
+	&__button {
+		box-shadow: 0 0.2rem 0 $shadow-color;
+		border-radius: 0.8rem;
+		background: white;
+		margin-left: 1.4rem;
+		cursor: pointer;
+		padding: 1.1rem;
+
+		&:active {
+			background: $shadow-color;
+			box-shadow: none;
+		}
 	}
 
 	&__input {
@@ -23,6 +32,11 @@
 		font-size: 1.4rem;
 		line-height: 2rem;
 		width: 100%;
+
+		box-shadow: 0 0.2rem 0 $shadow-color;
+		border-radius: 0.8rem;
+		background: white;
+		padding: 1.2rem;
 
 		&:focus {
 			outline: none;
