@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import Results from './components/results/Results';
 import Search from './components/search/Search';
-import { Response } from './data';
+import VideoPopup from './components/video-popup/VideoPopup';
+import { Response, Video } from './data';
 
 import './App.scss';
 
 function App() {
 	const [value, setValue] = useState('');
 	const [response, setResponse] = useState<Response>();
+	const [currentVideo, setCurrentVideo] = useState<Video>();
 	const [timeout, resetTimeout] = useState<NodeJS.Timeout>();
 
 	const request = async (token?: string) => {
@@ -61,6 +63,13 @@ function App() {
 					nextPage={response.nextPageToken}
 					prevPage={response.prevPageToken}
 					changePage={changePage}
+					playVideo={setCurrentVideo}
+				/>
+			)}
+			{currentVideo && (
+				<VideoPopup
+					video={currentVideo}
+					close={() => setCurrentVideo(undefined)}
 				/>
 			)}
 		</div>
