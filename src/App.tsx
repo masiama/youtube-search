@@ -4,10 +4,13 @@ import Results from './components/results/Results';
 import Search from './components/search/Search';
 import VideoPopup from './components/video-popup/VideoPopup';
 import { Response, Video } from './data';
+import cn from './utils/Bem';
 
 import './App.scss';
 
 function App() {
+	const app = cn('App');
+
 	const [value, setValue] = useState('');
 	const [response, setResponse] = useState<Response>();
 	const [currentVideo, setCurrentVideo] = useState<Video>();
@@ -55,7 +58,7 @@ function App() {
 	};
 
 	return (
-		<div className="App">
+		<div className={app({ fixed: !!currentVideo })}>
 			<Search value={value} onChange={setValue} />
 			{response && 'items' in response && (
 				<Results

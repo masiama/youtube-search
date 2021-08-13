@@ -4,6 +4,7 @@ import VideoPreview from '../video-preview/VideoPreview';
 import { Video } from '../../data';
 
 import './Results.scss';
+import cn from '../../utils/Bem';
 
 interface ResultsParams {
 	videos: Video[];
@@ -20,16 +21,34 @@ function Results({
 	changePage,
 	playVideo,
 }: ResultsParams) {
+	const results = cn('Results');
+
 	if (!videos.length) {
-		return <div className="Results">No videos found</div>;
+		return <div className={results({ empty: true })}>No videos found</div>;
 	}
 	return (
-		<div className="Results">
-			{videos.map((video) => (
-				<VideoPreview key={video.id.videoId} video={video} play={playVideo} />
-			))}
-			{nextPage && <div onClick={() => changePage(nextPage)}>Next</div>}
-			{prevPage && <div onClick={() => changePage(prevPage)}>Prev</div>}
+		<div className={results()}>
+			<div className={results('list')}>
+				{videos.map((video) => (
+					<VideoPreview key={video.id.videoId} video={video} play={playVideo} />
+				))}
+			</div>
+			<div className={results('buttons')}>
+				<button
+					className={results('button')}
+					disabled={!prevPage}
+					onClick={() => prevPage && changePage(prevPage)}
+				>
+					Prev
+				</button>
+				<button
+					className={results('button')}
+					disabled={!nextPage}
+					onClick={() => nextPage && changePage(nextPage)}
+				>
+					Next
+				</button>
+			</div>
 		</div>
 	);
 }

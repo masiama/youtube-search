@@ -1,0 +1,25 @@
+@import 'scss/vars';
+@import 'scss/fonts';
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-family: 'Museo Sans', sans-serif;
+	font-size: 62.5%; // 1rem == 10px by default
+
+	@media #{$narrow} {
+		font-size: 50%; // 1rem == 8px
+	}
+}
+
+body {
+	font-size: 1.3rem;
+	line-height: 2rem;
+	min-height: 100vh;
+	color: $text-color;
+	background: $page-background;
+}

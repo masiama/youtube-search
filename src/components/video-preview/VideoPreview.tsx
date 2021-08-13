@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Video } from '../../data';
+import cn from '../../utils/Bem';
 
 import './VideoPreview.scss';
 
@@ -10,13 +11,18 @@ interface VideoPreviewParams {
 }
 
 function VideoPreview({ video, play }: VideoPreviewParams) {
+	const videoPreview = cn('VideoPreview');
+
 	return (
-		<div className="VideoPreview" onClick={() => play(video)}>
-			<img
-				src={video.snippet.thumbnails.medium.url}
-				alt={video.snippet.title}
-			/>
-			<div>{video.snippet.title}</div>
+		<div className={videoPreview()} onClick={() => play(video)}>
+			<div className={videoPreview('imageWrapper')}>
+				<img
+					src={video.snippet.thumbnails.medium.url}
+					alt={video.snippet.title}
+					className={videoPreview('image')}
+				/>
+			</div>
+			<div className={videoPreview('title')}>{video.snippet.title}</div>
 		</div>
 	);
 }

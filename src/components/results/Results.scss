@@ -1,0 +1,50 @@
+@import '../../scss/vars';
+
+.Results {
+	&--empty {
+		font-size: 2.4rem;
+		line-height: 4rem;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, 32rem);
+		margin: 0 auto 2rem;
+		gap: 2rem;
+		justify-content: center;
+
+		@media #{$narrow} {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__buttons {
+		display: grid;
+		grid-template-columns: repeat(2, max-content);
+		justify-content: center;
+		gap: 2rem;
+	}
+
+	&__button {
+		color: white;
+		background: $primary-color;
+		padding: 0.6rem 1.3rem;
+		border-radius: 0.6rem;
+		display: block;
+		border: 0;
+
+		&:not(:disabled) {
+			cursor: pointer;
+
+			&:hover {
+				background: $button-hover-background;
+			}
+		}
+
+		&:disabled {
+			opacity: 0.3;
+		}
+	}
+}

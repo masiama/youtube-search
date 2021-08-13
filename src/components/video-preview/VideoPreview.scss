@@ -1,0 +1,29 @@
+@import '../../scss/vars';
+
+.VideoPreview {
+	box-shadow: 0 0.2rem 0 $shadow-color;
+	border-radius: 0.8rem;
+	background: white;
+	overflow: hidden;
+	cursor: pointer;
+
+	&__imageWrapper {
+		padding-top: 56.25%;
+		position: relative;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+
+	&__title {
+		font-size: 1.6rem;
+		line-height: 2.4rem;
+		margin: 1.8rem 2.4rem;
+	}
+}
